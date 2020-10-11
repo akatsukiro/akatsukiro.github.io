@@ -1,0 +1,643 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>树莓派无显搭建博客保姆级教程 | Shiro's Alley</title><meta name="keywords" content="Raspberry Pi 4B,Typecho"><meta name="author" content="Shiro Akatsuki"><meta name="copyright" content="Shiro Akatsuki"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="时代变化真快。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派无显搭建博客保姆级教程">
+<meta property="og:url" content="https://blog.akashi.top/2020/06/20/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%97%A0%E6%98%BE%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Shiro&#39;s Alley">
+<meta property="og:description" content="时代变化真快。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2020-06-20T15:59:59.000Z">
+<meta property="article:modified_time" content="2020-09-01T15:59:59.000Z">
+<meta property="article:author" content="Shiro Akatsuki">
+<meta property="article:tag" content="Blog">
+<meta property="article:tag" content="Raspberry Pi 4B">
+<meta property="article:tag" content="瞎捣鼓">
+<meta property="article:tag" content="Typecho">
+<meta property="article:tag" content="Frp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/akatsukiro/Things-in-blog@1.0.3/images/author.jpg"><link rel="canonical" href="https://blog.akashi.top/2020/06/20/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%97%A0%E6%98%BE%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/akatsukiro/Things-in-blog@1.0.3/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b69cd810f83a76336a66d472f5205e69";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":99,"position":"top","messagePrev":"该文章发布于","messageNext":"天前，可能已经失去了时效性，请酌情参考。"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-09-01 23:59:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><style type="text/css">#toggle-sidebar {bottom: 80px;left: 10px}</style><meta name="generator" content="Hexo 5.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/akatsukiro/Things-in-blog@1.0.3/images/author.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">10</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">11</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 家</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时光机</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list-ul"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://status.akashi.top/"><span> 网站状况</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/dream/"><i class="fa-fw fas fa-bars"></i><span> 愿望单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">准备</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E7%A1%AC%E4%BB%B6"><span class="toc-number">2.1.</span> <span class="toc-text">我的硬件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="toc-number">2.2.</span> <span class="toc-text">我的软件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.</span> <span class="toc-text">准备系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F"><span class="toc-number">3.1.</span> <span class="toc-text">配置系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AELNMP"><span class="toc-number">4.</span> <span class="toc-text">配置LNMP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Nginx"><span class="toc-number">4.1.</span> <span class="toc-text">安装Nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEMariaDB"><span class="toc-number">4.2.</span> <span class="toc-text">配置MariaDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85PHP"><span class="toc-number">4.3.</span> <span class="toc-text">安装PHP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AENginx"><span class="toc-number">4.4.</span> <span class="toc-text">配置Nginx</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Typecho"><span class="toc-number">5.</span> <span class="toc-text">安装Typecho</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85typecho"><span class="toc-number">5.1.</span> <span class="toc-text">安装typecho</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%B3%E8%AF%B7%E5%9F%9F%E5%90%8D"><span class="toc-number">6.</span> <span class="toc-text">申请域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F"><span class="toc-number">7.</span> <span class="toc-text">内网穿透</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F-1"><span class="toc-number">7.1.</span> <span class="toc-text">内网穿透</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E9%9A%A7%E9%81%93"><span class="toc-number">7.1.1.</span> <span class="toc-text">创建内网穿透隧道</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="toc-number">7.1.2.</span> <span class="toc-text">树莓派服务端配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%90%AFSSL"><span class="toc-number">8.</span> <span class="toc-text">开启SSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%94%E6%8E%89%E9%A3%8E%E6%89%87%EF%BC%81"><span class="toc-number">9.</span> <span class="toc-text">拔掉风扇！</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">10.</span> <span class="toc-text">后记</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Shiro's Alley</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 家</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时光机</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list-ul"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://status.akashi.top/"><span> 网站状况</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></div><div class="menus_item"><a class="site-page" href="/dream/"><i class="fa-fw fas fa-bars"></i><span> 愿望单</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">树莓派无显搭建博客保姆级教程</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-06-20T15:59:59.000Z" title="发表于 2020-06-20 23:59:59">2020-06-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-09-01T15:59:59.000Z" title="更新于 2020-09-01 23:59:59">2020-09-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/RaspPi/">RaspPi</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Typecho/">Typecho</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2020/06/20/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%97%A0%E6%98%BE%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/#post-comment" itemprop="discussionUrl"><span class="valine-comment-count comment-count" data-xid="/2020/06/20/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%97%A0%E6%98%BE%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/" itemprop="commentCount"></span></a></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><del>闲来无事</del>在百忙的学业中抽空搞得，所以有些问题并没有时间去搞清楚，只好<strong>大力出奇迹</strong>了。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="我的硬件"><a href="#我的硬件" class="headerlink" title="我的硬件"></a>我的硬件</h3><ul>
+<li>Raspberry Pi 4 model B <del>废话</del></li>
+<li>SanDisk Ultra microSDcard 32GB</li>
+<li>一台12年的上网本，系统为Win10 1909，SSH用</li>
+<li>读卡器</li>
+<li>一套散热</li>
+<li>网线等</li>
+</ul>
+<h3 id="我的软件"><a href="#我的软件" class="headerlink" title="我的软件"></a>我的软件</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.sdcard.org/downloads/formatter/">SD Card Formatter</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://filezilla-project.org/">FileZilla</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.putty.org/">PuTTY</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.7-zip.org/">7Zip</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/edge">Edge</a></p>
+<blockquote>
+<p>其他软件只要功能相仿也可</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="准备系统"><a href="#准备系统" class="headerlink" title="准备系统"></a>准备系统</h2><ul>
+<li>下载CentOS 8 arm64镜像<br>在此我使用的是在<a target="_blank" rel="noopener" href="https://raspberrypi.club/366.html">树莓派俱乐部</a>找到的树莓派修改版<del>图个心里安稳</del>，咱也不知道他修改了啥，但知道的确能用。</li>
+<li>准备microSD卡<br>使用SDf格式化SD卡</li>
+<li>烧录镜像<br>Win32DiskImager烧录解压出的镜像到SD卡上，用时约3分钟。</li>
+<li>启动<br>插上树莓派，插电，开机。</li>
+</ul>
+<h3 id="配置系统"><a href="#配置系统" class="headerlink" title="配置系统"></a>配置系统</h3><ul>
+<li><p>修改密码</p>
+<ul>
+<li><p>在网关处找到树莓派的IP地址。</p>
+</li>
+<li><p>在浏览器导航栏输入</p>
+<p>  <code>https://raspberrypiip:9090</code></p>
+<blockquote>
+<p>注意将raspberrypiIP改成查询到的IP</p>
+</blockquote>
+<ul>
+<li><p>进入Web Console管理界面。此系统默认账户<code>root</code>，密码<code>raspberrypi.club</code></p>
+</li>
+<li><p>修改root用户密码</p>
+</li>
+</ul>
+<p>　　- 点击<code>账户</code>，点击root用户，在点击<code>设置密码</code>输入密码确定即可。</p>
+</li>
+</ul>
+</li>
+<li><p>修改密码<br>　　- 在网关处找到树莓派的IP地址。</p>
+<ul>
+<li>在浏览器导航栏输入  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">      　　https:&#x2F;&#x2F;raspberrypiip:9090</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>登录即可</p>
+</li>
+<li><p>SSH连接</p>
+<ul>
+<li><p>打开PUTTY，输入树莓派IP，连接。</p>
+<p>　　账户<code>root</code>，密码为你刚刚修改的。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="配置LNMP"><a href="#配置LNMP" class="headerlink" title="配置LNMP"></a>配置LNMP</h2><h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx -y</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start nginx</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>开机自启</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable nginx</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问树莓派IP，出现Nginx欢迎页，安装成功。</p>
+</li>
+<li><p>安装MariaDB</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mariadb-server -y</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>启动</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mariadb</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>开机自启</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable mariadb</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置MariaDB"><a href="#配置MariaDB" class="headerlink" title="配置MariaDB"></a>配置MariaDB</h3><blockquote>
+<p>MySQL命令结束符为分号，故以下MySQL命令均带有分号。</p>
+</blockquote>
+<ul>
+<li><p>改密码</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqladmin -uroot password password</span><br></pre></td></tr></table></figure>
+
+<p>  <code>password</code>换成你想要的密码</p>
+</li>
+<li><p>登录</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -ppassword</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建用户</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create usr &#39;usr&#39;@&#39;localhost&#39; identified by &#39;password&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>  此用户<code>usr</code>只能在本地<code>localhost</code>使用密码<code>password</code>登录。</p>
+</li>
+<li><p>创建数据库</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database data;</span><br></pre></td></tr></table></figure>
+
+<p>  创建了名为<code>data</code>的数据库。</p>
+</li>
+<li><p>用户授权</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all on data.* to &#39;usr&#39;@&#39;localhost&#39;;</span><br></pre></td></tr></table></figure>
+
+<p>  用户<code>usr</code>将拥有<code>data</code>数据库中所有表的所有权限，并仅能在<code>localhost</code>登录。</p>
+</li>
+<li><p>刷新</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>退出</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quit;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>以上创建的数据库等将在安装typecho时使用，请根据自身情况修改填写</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php -y</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>发现<code>httpd</code>安装失败，不用管。</p>
+<ul>
+<li><p>如果``httpd`也安装了，删除</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove httpd*</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这会将<code>php-fpm</code>一同删除，再装回来</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-fpm -y</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h3><ul>
+<li><p>修改<code>nginx.conf</code>文件</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>伪静态</p>
+  <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">   <span class="section">server</span> &#123;</span><br><span class="line">       <span class="attribute">listen</span>       <span class="number">80</span> default_server;</span><br><span class="line">       <span class="attribute">listen</span>       [::]:<span class="number">80</span> default_server;</span><br><span class="line">       <span class="attribute">server_name</span>  yourdomain.top;</span><br><span class="line">       <span class="attribute">root</span>         /usr/share/nginx/html;</span><br><span class="line">    </span><br><span class="line">	<span class="attribute">if</span> (!-e <span class="variable">$request_filename</span>) &#123;</span><br><span class="line">           <span class="attribute">rewrite</span><span class="regexp"> ^(.*)$</span> /index.php<span class="variable">$1</span> <span class="literal">last</span>;</span><br><span class="line">       &#125;</span><br><span class="line">    </span><br><span class="line">       <span class="attribute">location</span> <span class="regexp">~ .*\.php(\/.*)*$</span> &#123;</span><br><span class="line">           <span class="attribute">include</span> fastcgi.conf;</span><br><span class="line">           <span class="attribute">fastcgi_pass</span>  <span class="number">127.0.0.1:9000</span>;</span><br><span class="line">       &#125;</span><br><span class="line">    </span><br><span class="line">       <span class="attribute">access_log</span> /var/log/nginx/yourdomain.log combined;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  使<code>server</code>段看起来和这个差不多。</p>
+</li>
+<li><p>重启一下</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果出错百度一下，<code>reboot</code>也行</p>
+</li>
+<li><p>新建<code>index.php</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo “&lt;?php phpinfo(); ?&gt;” &gt; &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&#x2F;index.php</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在浏览器打开树莓派IP，应能看到phpinfo页面</p>
+</li>
+</ul>
+<h2 id="安装Typecho"><a href="#安装Typecho" class="headerlink" title="安装Typecho"></a>安装Typecho</h2><ul>
+<li><p>去<a target="_blank" rel="noopener" href="https://typecho.org/">官网</a>下载typecho</p>
+</li>
+<li><p>用7Zip解压下载的文件，直至解压出</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">admin</span><br><span class="line">install</span><br><span class="line">usr</span><br><span class="line">var</span><br><span class="line">index.php</span><br><span class="line">install.php</span><br><span class="line">LICENSE.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开FileZilla，填写连接信息</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">主机：sftp:&#x2F;&#x2F;raspberrypiIP</span><br><span class="line">用户名：root</span><br><span class="line">密码：password</span><br><span class="line">端口：22</span><br></pre></td></tr></table></figure>
+
+<p>  传输刚刚解压出的文件到<code>/usr/share/nginx/html</code></p>
+</li>
+<li><p>浏览器打开树莓派IP，见到typecho安装页面。</p>
+</li>
+</ul>
+<h3 id="安装typecho"><a href="#安装typecho" class="headerlink" title="安装typecho"></a>安装typecho</h3><ul>
+<li><p>点击<code>我准备好了</code>开始安装</p>
+</li>
+<li><p>发现数据库一行空白</p>
+<p>  查找得知php7 yum安装时没有安装相应的MySQL 驱动，查找驱动</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum search php | grep mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>发现<code>php-mysqlnd.aarch64</code>可安装</p>
+</li>
+<li><p>安装</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-mysqlnd.aarch64 -y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>填写相关信息</p>
+<p>  注意以下空格填写</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">数据库用户名：usr</span><br><span class="line">数据库密码：password</span><br><span class="line">数据库名：data</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果创建失败了，应该会让你在网站目录新建一个<code>config.inc.php</code>的文件。</p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Typecho Blog Platform</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@copyright</span>  Copyright (c) 2008 Typecho team (http://www.typecho.org)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@license</span>    GNU General Public License 2.0</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>    $Id$</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/** 定义根目录 */</span></span><br><span class="line">define(<span class="string">&#x27;__TYPECHO_ROOT_DIR__&#x27;</span>, dirname(<span class="keyword">__FILE__</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 定义插件目录(相对路径) */</span></span><br><span class="line">define(<span class="string">&#x27;__TYPECHO_PLUGIN_DIR__&#x27;</span>, <span class="string">&#x27;/usr/plugins&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 定义模板目录(相对路径) */</span></span><br><span class="line">define(<span class="string">&#x27;__TYPECHO_THEME_DIR__&#x27;</span>, <span class="string">&#x27;/usr/themes&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 后台路径(相对路径) */</span></span><br><span class="line">define(<span class="string">&#x27;__TYPECHO_ADMIN_DIR__&#x27;</span>, <span class="string">&#x27;/admin/&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 设置包含路径 */</span></span><br><span class="line">@set_include_path(get_include_path() . PATH_SEPARATOR .</span><br><span class="line">__TYPECHO_ROOT_DIR__ . <span class="string">&#x27;/var&#x27;</span> . PATH_SEPARATOR .</span><br><span class="line">__TYPECHO_ROOT_DIR__ . __TYPECHO_PLUGIN_DIR__);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 载入API支持 */</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;Typecho/Common.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 载入Response支持 */</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;Typecho/Response.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 载入配置支持 */</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;Typecho/Config.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 载入异常支持 */</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;Typecho/Exception.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 载入插件支持 */</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;Typecho/Plugin.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 载入国际化支持 */</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;Typecho/I18n.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 载入数据库支持 */</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;Typecho/Db.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 载入路由器支持 */</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&#x27;Typecho/Router.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 程序初始化 */</span></span><br><span class="line">Typecho_Common::init();</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 定义数据库参数 */</span></span><br><span class="line">$db = <span class="keyword">new</span> Typecho_Db(<span class="string">&#x27;Pdo_Mysql&#x27;</span>, <span class="string">&#x27;typecho_&#x27;</span>);</span><br><span class="line">$db-&gt;addServer(<span class="keyword">array</span> (</span><br><span class="line">  <span class="string">&#x27;host&#x27;</span> =&gt; <span class="string">&#x27;localhost&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;user&#x27;</span> =&gt; <span class="string">&#x27;usr&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;password&#x27;</span> =&gt; <span class="string">&#x27;password&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;charset&#x27;</span> =&gt; <span class="string">&#x27;utf8&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;port&#x27;</span> =&gt; <span class="string">&#x27;3306&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;database&#x27;</span> =&gt; <span class="string">&#x27;data&#x27;</span>,</span><br><span class="line">), Typecho_Db::READ | Typecho_Db::WRITE);</span><br><span class="line">Typecho_Db::set($db);</span><br></pre></td></tr></table></figure>
+
+<p>  文件类似于以上，新建即可。</p>
+</li>
+<li><p>跟提示走，创建成功。</p>
+</li>
+</ul>
+<h2 id="申请域名"><a href="#申请域名" class="headerlink" title="申请域名"></a>申请域名</h2><ul>
+<li>我在<code>腾讯云</code>申请的域名。</li>
+<li>过程<ul>
+<li>查询域名</li>
+<li>购买</li>
+<li>提交资料，包括身份证</li>
+<li>审核</li>
+</ul>
+</li>
+<li>打开域名解析页，待用。</li>
+</ul>
+<h2 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h2><ul>
+<li><p>原因</p>
+<p>  我的年龄没到我们省的备案标准（18周岁及以上），故只能使用内网穿透。</p>
+</li>
+</ul>
+<h3 id="内网穿透-1"><a href="#内网穿透-1" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>我选择的是<code>Sakura Frp</code>，免费，还挺好用。</p>
+<h4 id="创建内网穿透隧道"><a href="#创建内网穿透隧道" class="headerlink" title="创建内网穿透隧道"></a>创建内网穿透隧道</h4><ul>
+<li><p>进入<a target="_blank" rel="noopener" href="https://www.natfrp.com/">官网</a></p>
+<p>  注册账号就好。</p>
+</li>
+<li><p>每日签到</p>
+</li>
+<li><p>创建隧道</p>
+<ul>
+<li><p>国内服务器不能允许未备案的http流量，故选择国外的服务器。</p>
+</li>
+<li><p>根据提示填写隧道相关信息，并创建</p>
+<blockquote>
+<p>本地地址应填127.0.0.1，毕竟我们是在树莓派上开启服务，树莓派内网地址也可，但若内网地址变动就要重新修改，麻烦。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注1：Sakura FRP 现已需要实名验证后才可创建使用HTTP隧道。</p>
+</blockquote>
+<blockquote>
+<p>注2：Sakura FRP 现已有一键部署命令（bash）。</p>
+</blockquote>
+<h4 id="树莓派服务端配置"><a href="#树莓派服务端配置" class="headerlink" title="树莓派服务端配置"></a>树莓派服务端配置</h4><ul>
+<li><p>点击左侧导航栏的<code>软件下载</code></p>
+</li>
+<li><p>找到<code>Linux arm64</code>的版本</p>
+</li>
+<li><p>下载（法一）</p>
+<ul>
+<li><p>直接下载</p>
+</li>
+<li><p>用FZ上传到<code>/home</code></p>
+</li>
+<li><p>在终端中输入</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;home</span><br><span class="line">.&#x2F;frpc_linux_arm64</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提示<code>permission denied</code>的话</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 frpc_linux_arm64</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再次运行就没问题了</p>
+</li>
+</ul>
+</li>
+<li><p>打开终端（法二）</p>
+<ul>
+<li><p>输入</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;qianqu.me&#x2F;frp&#x2F;frpc_linux_amd64</span><br><span class="line">.&#x2F;frpc_linux_arm64</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>找不到命令就安装<code>wget</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget -y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无权报错同上处理</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>输入访问密钥，选择你创建隧道时的服务器，开启成功!</p>
+<blockquote>
+<p>建议开启内网穿透服务时使用Web Console上的终端，因为我无法安装screen，SSH链接一关服务就停止了；而Web Console终端关闭后仍在工作。</p>
+</blockquote>
+</li>
+<li><p>然后根据提示，去域名解析页修改CNAME解析</p>
+</li>
+</ul>
+<h2 id="开启SSL"><a href="#开启SSL" class="headerlink" title="开启SSL"></a>开启SSL</h2><ul>
+<li><p>先搞个SSL证书</p>
+<p>  腾讯云管理界面可以直接申请TA的，挺快的。</p>
+</li>
+<li><p>配置Nginx</p>
+<ul>
+<li><p>打开<code>nginx.conf</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置如下</p>
+  <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">443</span> ssl http2 default_server;</span><br><span class="line">    <span class="attribute">listen</span>       [::]:<span class="number">443</span> ssl http2 default_server;</span><br><span class="line">    <span class="attribute">server_name</span>  www.yourdomain.top;</span><br><span class="line">    <span class="attribute">root</span>         /usr/share/nginx/html;</span><br><span class="line">        </span><br><span class="line">    <span class="attribute">ssl_certificate</span> 1_yourdomain.top_bundle.crt;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> 2_yourdomain.top.key;</span><br><span class="line">    <span class="attribute">ssl_session_cache</span> shared:SSL:<span class="number">1m</span>;</span><br><span class="line">    <span class="attribute">ssl_session_timeout</span>  <span class="number">5m</span>;</span><br><span class="line">    <span class="attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;</span><br><span class="line">    <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># Load configuration files for the default server block.</span></span><br><span class="line">    <span class="attribute">include</span> /etc/nginx/default.d/<span class="regexp">*.conf</span>;</span><br><span class="line">        </span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">root</span>  /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="attribute">error_page</span> <span class="number">404</span> /<span class="number">404</span>.html;</span><br><span class="line">        <span class="attribute">location</span> = /40x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="attribute">error_page</span> <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span> /50x.html;</span><br><span class="line">        <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="attribute">if</span> (!-e <span class="variable">$request_filename</span>) &#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^(.*)$</span> /index.php<span class="variable">$1</span> <span class="literal">last</span>;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ .*\.php(\/.*)*$</span> &#123;</span><br><span class="line">        <span class="attribute">include</span> fastcgi.conf;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>  <span class="number">127.0.0.1:9000</span>;</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    <span class="attribute">access_log</span> /var/log/nginx/www.yourdomain.top.log combined;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>debug</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -t</span><br></pre></td></tr></table></figure>
+
+<p>  报错自行修改，理论上不会报错，因为我帮你把坑踩了。</p>
+</li>
+<li><p>重启</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>访问</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;raspberryip</span><br></pre></td></tr></table></figure>
+
+<p>  无视浏览器警告，继续访问，发现正常进入</p>
+</li>
+<li><p>修改</p>
+<ul>
+<li><p>HOST</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">raspberryip yourdomain.com</span><br><span class="line">raspberryip www.yourdomain.com</span><br></pre></td></tr></table></figure>
+
+<p>  修改成以上，防止公网上不去。</p>
+</li>
+<li><p>typecho</p>
+<ul>
+<li><p>进入后台</p>
+</li>
+<li><p>设置-基本</p>
+<p>  将<code>站点地址</code>更改为</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.yourdomain.com</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>- 内网穿透
+
+    - 创建新隧道
+
+        记得选择`https`隧道，`443`端口哦~
+
+    - 停止树莓派的内网穿透
+
+        由于我不知道开启后怎样停止，于是在终端输入
+
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roboot</span><br></pre></td></tr></table></figure>
+
+    - 删除配置文件
+
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;home</span><br><span class="line">rf -f frpc_user.txt</span><br></pre></td></tr></table></figure>
+
+        我内网穿透跑在`/home`，所以需要进入该文件夹。
+
+    - 开启服务
+
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;frpc_linux_arm64</span><br></pre></td></tr></table></figure>
+
+    - 选择即可
+
+- HOST删除相关地址
+
+- 访问测试
+
+    肯定成功</code></pre>
+<ul>
+<li>完成</li>
+</ul>
+<h2 id="拔掉风扇！"><a href="#拔掉风扇！" class="headerlink" title="拔掉风扇！"></a>拔掉风扇！</h2><ul>
+<li><p>进入树莓派管理界面</p>
+<ul>
+<li>于主页找到<code>电源选项</code>,选择<code>powersave</code></li>
+</ul>
+</li>
+<li><p>拔掉树莓派的散热风扇</p>
+<p>  我已经受够了你的啸叫啦！！！</p>
+</li>
+</ul>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这篇文章断断续续写了好久，每做一点更新一点，所以肯定有缺漏。希望读者不吝赐教。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Shiro Akatsuki</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.akashi.top/2020/06/20/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%97%A0%E6%98%BE%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/">https://blog.akashi.top/2020/06/20/%E6%A0%91%E8%8E%93%E6%B4%BE%E6%97%A0%E6%98%BE%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E4%BF%9D%E5%A7%86%E7%BA%A7%E6%95%99%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.akashi.top" target="_blank">Shiro's Alley</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Blog/">Blog</a><a class="post-meta__tags" href="/tags/Raspberry-Pi-4B/">Raspberry Pi 4B</a><a class="post-meta__tags" href="/tags/%E7%9E%8E%E6%8D%A3%E9%BC%93/">瞎捣鼓</a><a class="post-meta__tags" href="/tags/Typecho/">Typecho</a><a class="post-meta__tags" href="/tags/Frp/">Frp</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/akatsukiro/Things-in-blog@1.0.3/images/pay.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/akatsukiro/Things-in-blog@1.0.3/images/pay.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/08/10/%E5%BE%AE%E5%BE%AE/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/akatsukiro/Things-in-blog@1.0.3/images/5.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">微微</div></div></a></div><div class="next-post pull-right"><a href="/2020/06/14/%E6%8A%98%E8%85%BE%E6%A0%91%E8%8E%93%E6%B4%BE/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">折腾树莓派</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/06/14/折腾树莓派/" title="折腾树莓派"><img class="cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-14</div><div class="title">折腾树莓派</div></div></a></div><div><a href="/2020/09/20/join-vercel/" title="使用Vercel来加速部署在Github的网站吧！"><img class="cover" src="https://cdn.jsdelivr.net/gh/XiaoLFeng/acgurl@master/Img/74007074_p0.webp"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-20</div><div class="title">使用Vercel来加速部署在Github的网站吧！</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></article></main><footer id="footer" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 By Shiro Akatsuki</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到<a href="https://blog.akashi.top/">若诗的小巷</a>，随便转转哦~</div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/gh/akatsukiro/Things-in-blog@1.0.3/js/utils.js"></script><script src="https://cdn.jsdelivr.net/gh/akatsukiro/Things-in-blog@1.0.3/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const initData = {
+      el: '#vcomment',
+      appId: 'HCNRFvRj78AXslV3SfgaQ2Mt-MdYXbMMI',
+      appKey: 'qIIMspSJAiNJyGhoqANpmEqv',
+      placeholder: '留下你的足迹吧',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick,mail'.split(','))
+    }
+
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><div class="aplayer no-destroy" data-id="5263566752" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="true" data-order="random" data-preload="none" data-autoplay="false" muted></div><canvas class="fireworks" mobile="true"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+
+document.addEventListener('pjax:send', function () {
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+})</script></div></body></html>
