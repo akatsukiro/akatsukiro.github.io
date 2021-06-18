@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
+    <title type="text">晓白的小站</title>
+    <subtitle type="html">欢迎来到晓白的小站呢~</subtitle>
+    <updated>2021-06-18T13:45:47&#43;08:00</updated>
+    <id>https://blog.chs.pub/</id>
+    <link rel="alternate" type="text/html" href="https://blog.chs.pub/" />
+    <link rel="self" type="application/atom&#43;xml" href="https://blog.chs.pub/atom.xml" />
+    <author>
+            <name>Akatsukiro</name>
+            <uri>https://blog.chs.pub/</uri>
+            
+                <email>aka@bep.ink</email>
+            </author>
+    <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    <generator uri="https://gohugo.io/" version="0.83.1">Hugo</generator>
+        <entry>
+            <title type="text">Hello World</title>
+            <link rel="alternate" type="text/html" href="https://blog.chs.pub/posts/hello-world/" />
+            <id>https://blog.chs.pub/posts/hello-world/</id>
+            <updated>2021-06-18T12:15:04&#43;08:00</updated>
+            <published>2021-06-18T11:25:10&#43;08:00</published>
+            <author>
+                    <name>Akatsukiro</name>
+                    <uri>https://blog.chs.pub/</uri>
+                    <email>aka@bep.ink</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">This is the very first post of Akatsukiro.</summary>
+            
+                <content type="html">&lt;p&gt;This is the very first post of Akatsukiro.&lt;/p&gt;
+</content>
+            
+            
+            
+            
+            
+                
+                    
+                
+                    
+                
+            
+        </entry>
+    
+</feed>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+
+
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>晓白的小站</title>
+        <link>https://blog.chs.pub/</link>
+        <description>欢迎来到晓白的小站呢~</description>
+        <generator>Hugo 0.83.1 https://gohugo.io/</generator>
+        
+            <language>zh-CN</language>
+        
+        
+            <managingEditor>aka@bep.ink (Akatsukiro)</managingEditor>
+        
+        
+            <webMaster>aka@bep.ink (Akatsukiro)</webMaster>
+        
+        
+            <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+        
+        <lastBuildDate>Fri, 18 Jun 2021 13:45:47 &#43;0800</lastBuildDate>
+        
+            <atom:link rel="self" type="application/rss&#43;xml" href="https://blog.chs.pub/rss.xml" />
+        
+        
+            <item>
+                <title>Hello World</title>
+                <link>https://blog.chs.pub/posts/hello-world/</link>
+                <guid isPermaLink="true">https://blog.chs.pub/posts/hello-world/</guid>
+                <pubDate>Fri, 18 Jun 2021 11:25:10 &#43;0800</pubDate>
+                
+                    <author>aka@bep.ink (Akatsukiro)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description>&lt;p&gt;This is the very first post of Akatsukiro.&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                    
+                        
+                    
+                
+            </item>
+        
+    </channel>
+</rss>
